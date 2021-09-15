@@ -3,7 +3,7 @@ package HomeWork;
 import java.util.Scanner;
 
 public class Hw1NotOrtalaması {
-    public static void Hesapla() {
+    public static void hesapla() {
 
         int matematik, fizik, kimya, turkce, tarih, muzik;
 

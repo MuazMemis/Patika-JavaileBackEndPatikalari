@@ -1,7 +1,7 @@
-import HomeWork.Hw2KDV;
+import HomeWork.Hw3Alan;
 
 public class Main {
     public static void main(String[] args) {
-        Hw2KDV.KdvHesapla();
+        Hw3Alan.alanHesapla();
     }
 }

@@ -3,7 +3,7 @@ package HomeWork;
 import java.util.Scanner;
 
 public class Hw2KDV {
-    public static void KdvHesapla() {
+    public static void kdvHesapla() {
         double tutar, kdvOrani = 0, kdvTutari, kdvliTutar;
 
         Scanner input = new Scanner(System.in);
