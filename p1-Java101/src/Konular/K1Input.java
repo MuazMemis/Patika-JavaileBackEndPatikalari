@@ -2,7 +2,7 @@ package Konular;
 
 import java.util.Scanner;
 
-public class Input {
+public class K1Input {
     public void UserInput(){
 
         /**

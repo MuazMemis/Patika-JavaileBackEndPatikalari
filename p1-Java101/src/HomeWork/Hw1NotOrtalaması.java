@@ -29,9 +29,11 @@ public class Hw1NotOrtalaması {
 
         int toplam = matematik + fizik + kimya + turkce + tarih + muzik;
         double ortalama = toplam / 6;
+
         System.out.println(ortalama);
         System.out.println(ortalama >= 60 ? "Sınıfı Geçti" : "Sınıfta Kaldı");
 
-
+        // Main de çalıştır.
+        // Hw1NotOrtalaması.Hesapla();
     }
 }
