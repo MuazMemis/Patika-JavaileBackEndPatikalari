@@ -1,20 +1,24 @@
 package HomeWork;
 
+import java.util.Scanner;
+
 public class Hw31AsalSayilar {
     public static void hesapla() {
-        int sayac;
+        int kontrol = 0;
 
         for (int i = 2; i <= 100; i++) {
-            sayac = 0;
 
-            for (int j = 2; j <= i; j++) {
+            for (int j = 2; j < i; j++) {
+
                 if (i % j == 0) {
-                    sayac += i;
+                    kontrol = 1;
                 }
             }
 
-            if (sayac == i) {
-                System.out.print(i + " ");
+            if (kontrol == 0) {
+                System.out.print(" " + i);
+            } else {
+                kontrol = 0;
             }
         }
     }
