@@ -5,14 +5,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Car audi = new Car();
+        Car audi = new Car("A3", "Siyah", 20);
         audi.brand = "Audi";
-        audi.model = "A3";
-        audi.type = "Sedan";
-        audi.speed = 10;
         audi.increaseSpeed(50);
         audi.printSpeed();
         audi.decreaseSpeed(30);
         audi.printSpeed();
+        audi.printInfo();
+
+        Car bmw = new Car();
     }
 }

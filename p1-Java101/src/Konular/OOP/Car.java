@@ -10,19 +10,41 @@ public class Car {
     public int speed;
     public int speedLimit = 180;
 
+    public Car(String model, String color, int speed) {
+        System.out.println("Parametreli kurucu metod.");
+        this.model = model;
+        this.speed = speed;
+        this.color = color;
+        this.type = "Sedan";
+        this.speedLimit = 180;
+    }
+
+    public Car(){
+        System.out.println("Parametresiz kurucu metod.");
+    }
+
     public int increaseSpeed(int increment) {
-        if (speed + increment < speedLimit)
-            speed += increment;
-        return speed;
+        if (this.speed + increment < this.speedLimit)
+            this.speed += increment;
+        return this.speed;
     }
 
     public int decreaseSpeed(int decrease) {
-        if (speed > 0)
-            speed -= decrease;
+        if (this.speed > 0)
+            this.speed -= decrease;
         return speed;
     }
 
     public void printSpeed() {
-        System.out.println(model + " Hızı: " + speed);
+        System.out.println(this.model + " Hızı: " + this.speed);
+    }
+
+    public void printInfo() {
+        System.out.println("==============");
+        System.out.println("Model \t:" + this.model);
+        System.out.println("Color \t:" + this.color);
+        System.out.println("Type \t:" + this.type);
+        System.out.println("Speed \t:" + this.speed);
+        System.out.println("==============");
     }
 }
