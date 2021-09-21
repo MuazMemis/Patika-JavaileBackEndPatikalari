@@ -4,8 +4,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Employee employee = new Employee("Osman", 2000, 45, 1985);
-        employee.maasHesapla();
+
+        int[] list = new int[10];
+        for (int i = 0; i < list.length; i++) {
+            list[i] = (i * 10) + 10;
+            System.out.println(list[i]);
+        }
 
     }
 }
