@@ -29,6 +29,15 @@ public class Main {
             }
             System.out.println();
         }
+
+        System.out.println("******** Foreach ************");
+
+        for (int[] row : matrix) {
+            for (int col : row) {
+                System.out.print(col + " ");
+            }
+            System.out.println();
+        }
     }
 }
 
