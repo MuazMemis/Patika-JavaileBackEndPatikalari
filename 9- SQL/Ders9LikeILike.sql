@@ -1,0 +1,13 @@
+--SELECT * FROM customer WHERE first_name LIKE 'Ma%;'
+--SELECT * FROM customer WHERE first_name LIKE 'M%y;'
+--SELECT * FROM customer WHERE first_name LIKE 'a%';
+--SELECT * FROM customer WHERE first_name ILIKE 'a%';
+--SELECT * FROM customer WHERE first_name NOT ILIKE 'a%';
+--SELECT * FROM customer WHERE first_name LIKE 'J_an';
+--SELECT * FROM actor WHERE first_name LIKE 'P%';
+--SELECT * FROM actor WHERE first_name LIKE 'T_m';
+--SELECT * FROM actor WHERE first_name LIKE 'T%m';
+--SELECT * FROM actor WHERE first_name ~~ 'T%'; -- "LIKE" yerine "~~"
+--SELECT * FROM actor WHERE first_name ~~* 'b%'; -- "ILIKE" yerine "~~*"
+--SELECT * FROM actor WHERE first_name !~~* 'b%'; -- "NOT ILIKE" yerine "!~~*"
+SELECT * FROM actor WHERE first_name !~~ 'T%'; -- "NOT LIKE" yerine "!~~"
