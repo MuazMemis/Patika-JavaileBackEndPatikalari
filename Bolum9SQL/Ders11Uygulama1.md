@@ -90,5 +90,3 @@ WHERE title LIKE 'T%'; -- 46 satır
 --BETWEEN 10 AND 20 sorgu parçasında bulunan 10 ve 20  değerleri için hangisi söylenebilir?
 -- İkiside sonuç verisine dahildir.
 ```
-
-BETWEEN 10 AND 20 sorgu parçasında bulunan 10 ve 20
