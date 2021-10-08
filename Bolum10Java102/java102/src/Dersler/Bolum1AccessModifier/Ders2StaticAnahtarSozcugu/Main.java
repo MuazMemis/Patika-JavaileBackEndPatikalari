@@ -1,4 +1,4 @@
-package Bolum1AccessModifier.Ders2StaticAnahtarSozcugu;
+package Dersler.Bolum1AccessModifier.Ders2StaticAnahtarSozcugu;
 
 public class Main {
     public static void main(String[] args) {

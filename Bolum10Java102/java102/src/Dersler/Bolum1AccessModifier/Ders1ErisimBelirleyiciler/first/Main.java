@@ -1,4 +1,4 @@
-package Bolum1AccessModifier.Ders1ErisimBelirleyiciler.first;
+package Dersler.Bolum1AccessModifier.Ders1ErisimBelirleyiciler.first;
 
 public class Main {
     public static void main(String[] args) {

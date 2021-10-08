@@ -1,4 +1,4 @@
-package Bolum1AccessModifier.Ders3StaticKodBloklari;
+package Dersler.Bolum1AccessModifier.Ders3StaticKodBloklari;
 
 public class Main {
     public static void main(String[] args) {

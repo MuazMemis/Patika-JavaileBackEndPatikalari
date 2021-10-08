@@ -1,4 +1,4 @@
-package Bolum1AccessModifier.Ders2StaticAnahtarSozcugu;
+package Dersler.Bolum1AccessModifier.Ders2StaticAnahtarSozcugu;
 
 public class Calculate {
     public static void calcAvarage(int[] notes) {
