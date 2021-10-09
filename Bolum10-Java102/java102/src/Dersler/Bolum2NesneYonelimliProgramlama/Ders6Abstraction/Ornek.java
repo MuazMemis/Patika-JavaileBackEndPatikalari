@@ -4,7 +4,7 @@ public class Ornek {
 }
 
 // abstract sınıf örneği
-public abstract class Doping {
+abstract class Doping {
 
     protected double price;
     protected double[] taxes;
@@ -29,7 +29,7 @@ public abstract class Doping {
     public abstract double calculate();
 }
 
-public class TopOfListDoping extends Doping {
+class TopOfListDoping extends Doping {
 
     public TopOfListDoping(double price)
     {
@@ -45,7 +45,7 @@ public class TopOfListDoping extends Doping {
     }
 }
 
-public class UptodateDoping extends Doping {
+class UptodateDoping extends Doping {
 
     public UptodateDoping(double price, double[] taxes) {
         super.setPrice(price);
