@@ -1,11 +1,6 @@
 package Dersler.Bolum3MaceraOyunu;
 
-import Dersler.Bolum3MaceraOyunu.Characters.Archer;
-import Dersler.Bolum3MaceraOyunu.Characters.GameChar;
-import Dersler.Bolum3MaceraOyunu.Characters.Knight;
-import Dersler.Bolum3MaceraOyunu.Characters.Samurai;
-
-import java.util.Scanner;
+import Dersler.Bolum3MaceraOyunu.Characters.*;
 
 public class Player {
     private int damage;
@@ -13,15 +8,15 @@ public class Player {
     private int money;
     private String name;
     private String charName;
-
-    public Scanner input = new Scanner(System.in);
+    private Inventory inventory;
 
     public Player(String name) {
         this.name = name;
+        this.inventory = new Inventory();
     }
 
     public void selectChar() {
-        System.out.println("************************************************************");
+        System.out.println("*******************************************************************");
         GameChar[] charList = {new Samurai(), new Archer(), new Knight()};
         for (GameChar gameChar : charList) {
             System.out.println("ID : " + gameChar.getId() +
@@ -30,10 +25,10 @@ public class Player {
                     "\t Sağlık : " + gameChar.getHealth() +
                     "\t Para : " + gameChar.getMoney());
         }
-        System.out.println("************************************************************");
+        System.out.println("*******************************************************************");
         System.out.print("Lütfen bir karakter giriniz : ");
 
-        int selectChar = input.nextInt();
+        int selectChar = Game.input.nextInt();
 
         switch (selectChar) {
             case 1 -> initPlayer(new Samurai());
@@ -41,8 +36,8 @@ public class Player {
             case 3 -> initPlayer(new Knight());
             default -> System.out.println("Karakter seçiniz.");
         }
-        System.out.println("Karakter : " + this.getCharName() + " => Hasar : " + this.getDamage() + " => Sağlık : " +
-                this.getHealth() + " => Para : " + this.getMoney());
+       /* System.out.println("Karakter : " + this.getCharName() + " => Hasar : " + this.getDamage() + " => Sağlık : " +
+                this.getHealth() + " => Para : " + this.getMoney());*/
     }
 
     public void initPlayer(GameChar gameChar) {
@@ -52,8 +47,14 @@ public class Player {
         this.setCharName(gameChar.getName());
     }
 
+    public void printInfo() {
+        System.out.println("Silahınız : " + this.getInventory().getWeapon().getName() +
+                " => Hasar : " + this.getDamage() + " => Sağlık : " + this.getHealth() + " => Para : "
+                + this.getMoney());
+    }
+
     public int getDamage() {
-        return damage;
+        return damage + this.getInventory().getWeapon().getDamage();
     }
 
     public void setDamage(int damage) {
@@ -90,5 +91,13 @@ public class Player {
 
     public void setCharName(String charName) {
         this.charName = charName;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 }
