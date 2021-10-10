@@ -1,8 +1,9 @@
-package Dersler.Bolum3MaceraOyunu.Locations;
+package Dersler.Bolum3MaceraOyunu.Locations.Normal;
 
+import Dersler.Bolum3MaceraOyunu.Locations.Location;
 import Dersler.Bolum3MaceraOyunu.Player;
 
-public class NormalLocation extends Location {
+public abstract class NormalLocation extends Location {
 
     public NormalLocation(Player player, String name) {
         super(player, name);

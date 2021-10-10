@@ -1,4 +1,4 @@
-package Dersler.Bolum3MaceraOyunu.Locations;
+package Dersler.Bolum3MaceraOyunu.Locations.Normal;
 
 import Dersler.Bolum3MaceraOyunu.Game;
 import Dersler.Bolum3MaceraOyunu.Items.Armor;
