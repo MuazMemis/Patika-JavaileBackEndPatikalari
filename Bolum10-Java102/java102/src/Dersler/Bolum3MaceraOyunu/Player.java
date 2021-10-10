@@ -6,6 +6,7 @@ import Dersler.Bolum3MaceraOyunu.Items.Weapon;
 public class Player {
     private int damage;
     private int health;
+    private int orjinalHealth;
     private int money;
     private String name;
     private String charName;
@@ -18,6 +19,7 @@ public class Player {
 
     public void selectChar() {
         System.out.println("*******************************************************************");
+        System.out.println("Karakterler");
         GameChar[] charList = {new Samurai(), new Archer(), new Knight()};
         for (GameChar gameChar : charList) {
             System.out.println("ID : " + gameChar.getId() +
@@ -37,13 +39,12 @@ public class Player {
             case 3 -> initPlayer(new Knight());
             default -> System.out.println("Karakter seçiniz.");
         }
-       /* System.out.println("Karakter : " + this.getCharName() + " => Hasar : " + this.getDamage() + " => Sağlık : " +
-                this.getHealth() + " => Para : " + this.getMoney());*/
     }
 
     public void initPlayer(GameChar gameChar) {
         this.setDamage(gameChar.getDamage());
         this.setHealth(gameChar.getHealth());
+        this.setOrjinalHealth(gameChar.getHealth());
         this.setMoney(gameChar.getMoney());
         this.setCharName(gameChar.getName());
     }
@@ -74,6 +75,9 @@ public class Player {
     }
 
     public void setHealth(int health) {
+        if (health < 0) {
+            health = 0;
+        }
         this.health = health;
     }
 
@@ -111,5 +115,13 @@ public class Player {
 
     public Weapon getWeapon() {
         return this.getInventory().getWeapon();
+    }
+
+    public int getOrjinalHealth() {
+        return orjinalHealth;
+    }
+
+    public void setOrjinalHealth(int orjinalHealth) {
+        this.orjinalHealth = orjinalHealth;
     }
 }
