@@ -1,4 +1,4 @@
-package Dersler.Bolum3MaceraOyunu;
+package Dersler.Bolum3MaceraOyunu.Items;
 
 public class Weapon {
     private int id;
@@ -15,7 +15,7 @@ public class Weapon {
 
     public static Weapon[] weapons() {
         Weapon[] weaponList = {
-                new Weapon(1, "Tabanca", 2, 5),
+                new Weapon(1, "Tabanca", 2, 15),
                 new Weapon(2, "Kılıç", 3, 35),
                 new Weapon(3, "Tüfek", 7, 45)
         };

@@ -27,13 +27,20 @@ public class Game {
             System.out.println("");
             System.out.println("1 - Güvenli Ev -> Burası sizin için güvenli bir ev, düşman yok !");
             System.out.println("2 - Mağaza -> Silah veya Zırh satın alabilirsiniz ! ");
+            System.out.println("0 - Çıkış Yap -> Oyunu sonlandır ! ");
             System.out.print("Lütfen gitmek istediğiniz bölgeyi seçiniz : ");
             int selectLocation = input.nextInt();
 
             switch (selectLocation) {
+                case 0 -> location = null;
                 case 1 -> location = new SafeHouse(player);
                 case 2 -> location = new ToolStore(player);
                 default -> System.out.println("Bölge seçiniz.");
+            }
+
+            if (location == null) {
+                System.out.println("Oyun bitti yine bekleriz.");
+                break;
             }
 
             if (!location.onLocation()) {
