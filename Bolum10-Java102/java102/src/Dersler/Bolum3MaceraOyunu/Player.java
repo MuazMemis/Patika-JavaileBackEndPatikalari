@@ -1,6 +1,7 @@
 package Dersler.Bolum3MaceraOyunu;
 
 import Dersler.Bolum3MaceraOyunu.Characters.*;
+import Dersler.Bolum3MaceraOyunu.Items.Weapon;
 
 public class Player {
     private int damage;
@@ -50,14 +51,18 @@ public class Player {
     public void printInfo() {
         System.out.println("Silah : " + this.getInventory().getWeapon().getName() +
                 " => Zırh : " + this.getInventory().getArmor().getName() +
-                " => Hasar : " + this.getDamage() +
+                " => Hasar : " + this.getTotalDamage() +
                 " => Engelleme : " + this.getInventory().getArmor().getBlock() +
                 " => Sağlık : " + this.getHealth() +
                 " => Para : " + this.getMoney());
     }
 
-    public int getDamage() {
+    public int getTotalDamage() {
         return damage + this.getInventory().getWeapon().getDamage();
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     public void setDamage(int damage) {
@@ -102,5 +107,9 @@ public class Player {
 
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
+    }
+
+    public Weapon getWeapon() {
+        return this.getInventory().getWeapon();
     }
 }
