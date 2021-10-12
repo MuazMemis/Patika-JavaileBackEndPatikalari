@@ -2,7 +2,7 @@ package HackerRank;
 
 import java.util.Scanner;
 
-public class H1JavaStaticInitializerBlock {
+public class H01JavaStaticInitializerBlock {
     public static void main(String[] args) {
         if (flag) {
             int area = B * H;
