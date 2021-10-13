@@ -2,7 +2,7 @@ package HackerRank;
 
 import java.util.Scanner;
 
-public class H9JavaExceptionHandling {
+public class H09JavaExceptionHandling {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         while (in.hasNextInt()) {

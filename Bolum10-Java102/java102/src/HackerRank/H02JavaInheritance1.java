@@ -1,6 +1,6 @@
 package HackerRank;
 
-public class H2JavaInheritance1 {
+public class H02JavaInheritance1 {
     public static void main(String[] args) {
         Bird bird = new Bird();
         bird.walk();

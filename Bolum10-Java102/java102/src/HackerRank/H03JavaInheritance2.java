@@ -1,6 +1,6 @@
 package HackerRank;
 
-public class H3JavaInheritance2 {
+public class H03JavaInheritance2 {
     public static void main(String[] args) {
         Adder a = new Adder();
         System.out.println("My superclass is: " + a.getClass().getSuperclass().getName());

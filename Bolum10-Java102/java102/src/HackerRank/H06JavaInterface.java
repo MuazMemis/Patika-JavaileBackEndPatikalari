@@ -2,7 +2,7 @@ package HackerRank;
 
 import java.util.Scanner;
 
-public class H6JavaInterface {
+public class H06JavaInterface {
     public static void main(String[] args) {
         MyCalculator my_calculator = new MyCalculator();
         System.out.print("I implemented: ");
@@ -28,11 +28,11 @@ interface AdvancedArithmetic {
 
 class MyCalculator implements AdvancedArithmetic {
     public int divisor_sum(int n) {
-        int sum  = 0;
+        int sum = 0;
         int sqrt = (int) Math.sqrt(n);
         for (int i = 1; i <= sqrt; i++) {
             if (n % i == 0) {
-                sum += i + n/i;
+                sum += i + n / i;
             }
         }
 
