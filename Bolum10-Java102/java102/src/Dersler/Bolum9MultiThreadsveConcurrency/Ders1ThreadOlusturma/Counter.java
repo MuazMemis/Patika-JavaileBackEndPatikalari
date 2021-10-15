@@ -1,4 +1,4 @@
-package Dersler.Bolum9MultiThreadsveConcurrency;
+package Dersler.Bolum9MultiThreadsveConcurrency.Ders1ThreadOlusturma;
 
 public class Counter extends Thread {
     @Override
