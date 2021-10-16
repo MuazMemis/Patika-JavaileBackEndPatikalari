@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         OrderMatic orderMatic = new OrderMatic();
-        ExecutorService pool = Executors.newFixedThreadPool(100); // 10 tane thread oluşturur.
+        ExecutorService pool = Executors.newFixedThreadPool(4); // 10 tane thread oluşturur.
 
         for (int i = 0; i < 100; i++) {
             pool.execute(orderMatic);
