@@ -1,4 +1,4 @@
-package Dersler.Bolum11PatikaKlonu.Ders2ProjeDosyalariveKullaniciYonetimi.com.patikadev.Helper;
+package Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.Helper;
 
 public class Config {
     public static final String PROJECT_TITLE = "Patika.Dev";

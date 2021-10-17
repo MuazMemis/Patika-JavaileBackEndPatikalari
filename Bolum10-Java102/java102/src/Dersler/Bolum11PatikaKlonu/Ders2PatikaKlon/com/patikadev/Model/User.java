@@ -1,6 +1,6 @@
-package Dersler.Bolum11PatikaKlonu.Ders2ProjeDosyalariveKullaniciYonetimi.com.patikadev.Model;
+package Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.Model;
 
-import Dersler.Bolum11PatikaKlonu.Ders2ProjeDosyalariveKullaniciYonetimi.com.patikadev.Helper.DBConnector;
+import Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.Helper.DBConnector;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
