@@ -4,6 +4,7 @@ import java.sql.*;
 
 public class DBConnect {
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/univercity";
+    //    private static final String DB_URL = "jdbc:postgresql://localhost:5432/patika";
     private static final String DB_USERNAME = "postgres";
     private static final String DB_PASSWORD = "togg";
 
@@ -13,6 +14,18 @@ public class DBConnect {
 //        Statement st = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 //        String sql = "SELECT * FROM student";
 //        ResultSet data = st.executeQuery(sql);
+
+        /*String sql = "SELECT * FROM public.\"user\"";
+        ResultSet data = st.executeQuery(sql);
+
+        while (data.next()) {
+            System.out.println("ID : " + data.getInt("id"));
+            System.out.println("Name : " + data.getString("name"));
+            System.out.println("UserName : " + data.getString("username"));
+            System.out.println("Password : " + data.getString("pass"));
+            System.out.println("Type : " + data.getString("type"));
+            System.out.println("******************");
+        }*/
 
         /*while (data.next()) {
             System.out.println("ID : " + data.getInt("student_id"));
@@ -51,14 +64,14 @@ public class DBConnect {
         pr.executeUpdate();*/
 
 
-        String sqlDelete = "DELETE FROM student WHERE student_id = 4";
+        /*String sqlDelete = "DELETE FROM student WHERE student_id = 4";
         String prSqlDelete = "DELETE FROM student WHERE student_id = ?";
 
         st.executeUpdate(sqlDelete);
 
         PreparedStatement pr = connection.prepareStatement(prSqlDelete);
         pr.setInt(1, 3);
-        pr.executeUpdate();
+        pr.executeUpdate();*/
 
         connection.close();
     }
