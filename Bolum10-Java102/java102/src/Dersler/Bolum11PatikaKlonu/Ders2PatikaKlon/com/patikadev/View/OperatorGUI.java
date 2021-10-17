@@ -1,8 +1,10 @@
-package Dersler.Bolum11PatikaKlonu.Ders2ProjeDosyalariveKullaniciYonetimi.com.patikadev.View;
+package Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.View;
 
-import Dersler.Bolum11PatikaKlonu.Ders2ProjeDosyalariveKullaniciYonetimi.com.patikadev.Helper.*;
-import Dersler.Bolum11PatikaKlonu.Ders2ProjeDosyalariveKullaniciYonetimi.com.patikadev.Model.Operator;
-import Dersler.Bolum11PatikaKlonu.Ders2ProjeDosyalariveKullaniciYonetimi.com.patikadev.Model.User;
+import Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.Helper.Config;
+import Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.Helper.Helper;
+import Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.Model.Operator;
+import Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.Model.User;
+import Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.Helper.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +19,12 @@ public class OperatorGUI extends JFrame {
     private JPanel pnl_user_list;
     private JScrollPane scrl_user_list;
     private JTable tbl_user_list;
+    private JPanel pnl_user_form;
+    private JTextField fld_user_name;
+    private JTextField fld_username;
+    private JPasswordField fld_password;
+    private JComboBox cmb_user_type;
+    private JButton btn_user_add;
 
     private DefaultTableModel mdl_user_list;
     private Object row_user_list;
