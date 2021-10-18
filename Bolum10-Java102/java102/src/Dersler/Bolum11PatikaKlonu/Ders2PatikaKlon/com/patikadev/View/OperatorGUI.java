@@ -3,16 +3,14 @@ package Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.View;
 import Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.Helper.Config;
 import Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.Helper.Helper;
 import Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.Model.Operator;
+import Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.Model.Patika;
 import Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.Model.User;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 public class OperatorGUI extends JFrame {
@@ -26,9 +24,9 @@ public class OperatorGUI extends JFrame {
     private JScrollPane scrl_user_list;
     private JTable tbl_user_list;
     private JPanel pnl_user_form;
-    private JTextField fld_name;
-    private JTextField fld_username;
-    private JPasswordField fld_password;
+    private JTextField fld_user_name;
+    private JTextField fld_user_username;
+    private JPasswordField fld_user_password;
     private JComboBox cmb_user_type;
     private JButton btn_user_add;
     private JTextField fld_user_id;
@@ -37,37 +35,134 @@ public class OperatorGUI extends JFrame {
     private JTextField fld_search_user_username;
     private JComboBox cmb_search_user_type;
     private JButton btn_user_search;
+    private JPanel pnl_patika_list;
+    private JScrollPane scrll_patika_list;
+    private JTable tbl_patika_list;
+    private JPanel pnl_patika_add;
+    private JTextField fld_patika_name;
+    private JButton btn_patika_add;
 
     private DefaultTableModel mdl_user_list;
     private Object[] row_user_list;
+
+    private DefaultTableModel mdl_patika_list;
+    private Object[] row_patika_list;
+    private JPopupMenu patikaMenu;
 
     private final Operator operator;
 
     public OperatorGUI(Operator operator) {
         this.operator = operator;
         createLayout();
+
+        getAllUser();
         userAdd();
         userDelete();
         userUpdate();
         userSearch();
+
+        createModelPatika();
+        patikaAdd();
+
         logout();
+
     }
 
-    private void userSearch() {
-        btn_user_search.addActionListener(e -> {
-            String name = fld_search_user_name.getText();
-            String username = fld_search_user_username.getText();
-            String type = cmb_search_user_type.getSelectedItem().toString();
+    private void createModelPatika() {
+        createTablePatika();
+        getAllPatika();
+        patikaPopupMenu();
+    }
 
-            String query = User.searchQuery(name, username, type);
-            getAllUser(User.searchUserList(query));
+    private void createTablePatika() {
+        mdl_patika_list = new DefaultTableModel();
+        Object[] col_patika_list = {"ID", "Patika Adı"};
+        mdl_patika_list.setColumnIdentifiers(col_patika_list);
+        row_patika_list = new Object[col_patika_list.length];
 
+        tbl_patika_list.setModel(mdl_patika_list);
+        tbl_patika_list.getTableHeader().setReorderingAllowed(false);
+        tbl_patika_list.getColumnModel().getColumn(0).setMaxWidth(50);
+
+    }
+
+    private void patikaPopupMenu() {
+        patikaMenu = new JPopupMenu();
+        JMenuItem updateMenu = new JMenuItem("Güncelle");
+        JMenuItem deleteMenu = new JMenuItem("Sil");
+        patikaMenu.add(updateMenu);
+        patikaMenu.add(deleteMenu);
+        tbl_patika_list.setComponentPopupMenu(patikaMenu);
+
+        patikaUpdate(updateMenu);
+        patikaDelete(deleteMenu);
+    }
+
+    private void getAllPatika() {
+        DefaultTableModel clearModel = (DefaultTableModel) tbl_patika_list.getModel();
+        clearModel.setRowCount(0);
+
+        int i;
+        for (Patika patika : Patika.getList()) {
+            i = 0;
+            row_patika_list[i++] = patika.getId();
+            row_patika_list[i++] = patika.getName();
+            mdl_patika_list.addRow(row_patika_list);
+        }
+
+    }
+
+    private void patikaAdd() {
+        btn_patika_add.addActionListener(e -> {
+            if (Helper.isFieldEmpty(fld_patika_name)) {
+                Helper.showMessage("fill");
+            } else {
+                if (Patika.add(fld_patika_name.getText())) {
+                    getAllPatika();
+                    fld_patika_name.setText(null);
+                    Helper.showMessage("done");
+                } else {
+                    Helper.showMessage("error");
+                }
+            }
         });
     }
 
-    private void logout() {
-        btn_logout.addActionListener(e -> {
-            dispose();
+    private void patikaUpdate(JMenuItem updateMenu) {
+        tbl_patika_list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                Point point = e.getPoint();
+                int selected_row = tbl_patika_list.rowAtPoint(point);
+                tbl_patika_list.setRowSelectionInterval(selected_row, selected_row);
+            }
+        });
+
+        updateMenu.addActionListener(e -> {
+            int select_id = Integer.parseInt(tbl_patika_list.getValueAt(tbl_patika_list.getSelectedRow(), 0)
+                    .toString());
+            UpdatePatikaGUI updatePatikaGUI = new UpdatePatikaGUI(Patika.getFetchById(select_id));
+            updatePatikaGUI.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    getAllPatika();
+                }
+            });
+        });
+    }
+
+    private void patikaDelete(JMenuItem deleteMenu) {
+        deleteMenu.addActionListener(e -> {
+            if (Helper.confirm("sure")) {
+                int select_id = Integer.parseInt(tbl_patika_list.getValueAt(tbl_patika_list.getSelectedRow(), 0)
+                        .toString());
+                if (Patika.delete(select_id)) {
+                    getAllPatika();
+                    Helper.showMessage("done");
+                } else {
+                    Helper.showMessage("error");
+                }
+            }
         });
     }
 
@@ -81,7 +176,6 @@ public class OperatorGUI extends JFrame {
 
         this.lbl_welcome.setText("Hoşgeldiniz => " + this.operator.getName());
 
-        getAllUser();
     }
 
     private void getAllUser() {
@@ -146,23 +240,35 @@ public class OperatorGUI extends JFrame {
 
     }
 
+    private void userSearch() {
+        btn_user_search.addActionListener(e -> {
+            String name = fld_search_user_name.getText();
+            String username = fld_search_user_username.getText();
+            String type = cmb_search_user_type.getSelectedItem().toString();
+
+            String query = User.searchQuery(name, username, type);
+            getAllUser(User.searchUserList(query));
+
+        });
+    }
+
     private void userAdd() {
         ArrayList<JTextField> fields = new ArrayList<>();
-        fields.add(fld_name);
-        fields.add(fld_username);
-        fields.add(fld_password);
+        fields.add(fld_user_name);
+        fields.add(fld_user_username);
+        fields.add(fld_user_password);
 
         btn_user_add.addActionListener(e -> {
             if (Helper.isFieldEmpty(fields)) {
                 Helper.showMessage("fill");
             } else {
-                if (User.add(fld_name.getText(), fld_username.getText(), fld_password.getText(),
+                if (User.add(fld_user_name.getText(), fld_user_username.getText(), fld_user_password.getText(),
                         cmb_user_type.getSelectedItem().toString())) {
                     getAllUser();
 
-                    fld_name.setText(null);
-                    fld_username.setText(null);
-                    fld_password.setText(null);
+                    fld_user_name.setText(null);
+                    fld_user_username.setText(null);
+                    fld_user_password.setText(null);
 
                     Helper.showMessage("done");
                 }
@@ -202,27 +308,23 @@ public class OperatorGUI extends JFrame {
             if (Helper.isFieldEmpty(fld_user_id)) {
                 Helper.showMessage("fill");
             } else {
-                int user_id = Integer.parseInt(fld_user_id.getText());
-                if (User.delete(user_id)) {
-                    getAllUser();
-                    Helper.showMessage("done");
-                } else {
-                    Helper.showMessage("error");
+                if (Helper.confirm("sure")) {
+                    int user_id = Integer.parseInt(fld_user_id.getText());
+                    if (User.delete(user_id)) {
+                        getAllUser();
+                        Helper.showMessage("done");
+                    } else {
+                        Helper.showMessage("error");
+                    }
                 }
             }
         });
     }
 
-    public static void main(String[] args) {
-        Helper.setLayout();
-
-        Operator operator = new Operator();
-        operator.setId(1);
-        operator.setName("Muaz Memiş");
-        operator.setUsername("muaz");
-        operator.setPass("1234");
-        operator.setType("operator");
-
-        OperatorGUI opGUI = new OperatorGUI(operator);
+    private void logout() {
+        btn_logout.addActionListener(e -> {
+            dispose();
+        });
     }
+
 }
