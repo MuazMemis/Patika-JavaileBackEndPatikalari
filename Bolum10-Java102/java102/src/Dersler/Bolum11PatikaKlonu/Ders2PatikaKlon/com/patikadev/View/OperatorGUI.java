@@ -14,7 +14,6 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 public class OperatorGUI extends JFrame {
-
     private JPanel wrapper;
     private JTabbedPane tab_operator;
     private JLabel lbl_welcome;
@@ -55,115 +54,18 @@ public class OperatorGUI extends JFrame {
         this.operator = operator;
         createLayout();
 
+        userController();
+        patikaController();
+
+        logout();
+    }
+
+    private void userController() {
         getAllUser();
         userAdd();
         userDelete();
         userUpdate();
         userSearch();
-
-        createModelPatika();
-        patikaAdd();
-
-        logout();
-
-    }
-
-    private void createModelPatika() {
-        createTablePatika();
-        getAllPatika();
-        patikaPopupMenu();
-    }
-
-    private void createTablePatika() {
-        mdl_patika_list = new DefaultTableModel();
-        Object[] col_patika_list = {"ID", "Patika Adı"};
-        mdl_patika_list.setColumnIdentifiers(col_patika_list);
-        row_patika_list = new Object[col_patika_list.length];
-
-        tbl_patika_list.setModel(mdl_patika_list);
-        tbl_patika_list.getTableHeader().setReorderingAllowed(false);
-        tbl_patika_list.getColumnModel().getColumn(0).setMaxWidth(50);
-
-    }
-
-    private void patikaPopupMenu() {
-        patikaMenu = new JPopupMenu();
-        JMenuItem updateMenu = new JMenuItem("Güncelle");
-        JMenuItem deleteMenu = new JMenuItem("Sil");
-        patikaMenu.add(updateMenu);
-        patikaMenu.add(deleteMenu);
-        tbl_patika_list.setComponentPopupMenu(patikaMenu);
-
-        patikaUpdate(updateMenu);
-        patikaDelete(deleteMenu);
-    }
-
-    private void getAllPatika() {
-        DefaultTableModel clearModel = (DefaultTableModel) tbl_patika_list.getModel();
-        clearModel.setRowCount(0);
-
-        int i;
-        for (Patika patika : Patika.getList()) {
-            i = 0;
-            row_patika_list[i++] = patika.getId();
-            row_patika_list[i++] = patika.getName();
-            mdl_patika_list.addRow(row_patika_list);
-        }
-
-    }
-
-    private void patikaAdd() {
-        btn_patika_add.addActionListener(e -> {
-            if (Helper.isFieldEmpty(fld_patika_name)) {
-                Helper.showMessage("fill");
-            } else {
-                if (Patika.add(fld_patika_name.getText())) {
-                    getAllPatika();
-                    fld_patika_name.setText(null);
-                    Helper.showMessage("done");
-                } else {
-                    Helper.showMessage("error");
-                }
-            }
-        });
-    }
-
-    private void patikaUpdate(JMenuItem updateMenu) {
-        tbl_patika_list.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                Point point = e.getPoint();
-                int selected_row = tbl_patika_list.rowAtPoint(point);
-                tbl_patika_list.setRowSelectionInterval(selected_row, selected_row);
-            }
-        });
-
-        updateMenu.addActionListener(e -> {
-            int select_id = Integer.parseInt(tbl_patika_list.getValueAt(tbl_patika_list.getSelectedRow(), 0)
-                    .toString());
-            UpdatePatikaGUI updatePatikaGUI = new UpdatePatikaGUI(Patika.getFetchById(select_id));
-            updatePatikaGUI.addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosed(WindowEvent e) {
-                    getAllPatika();
-                }
-            });
-        });
-    }
-
-    private void patikaDelete(JMenuItem deleteMenu) {
-        deleteMenu.addActionListener(e -> {
-            if (Helper.confirm("sure")) {
-                int select_id = Integer.parseInt(tbl_patika_list.getValueAt(tbl_patika_list.getSelectedRow(), 0)
-                        .toString());
-                if (Patika.delete(select_id)) {
-                    getAllPatika();
-                    Helper.showMessage("done");
-                } else {
-                    Helper.showMessage("error");
-                }
-            }
-        });
     }
 
     private void createLayout() {
@@ -316,6 +218,109 @@ public class OperatorGUI extends JFrame {
                     } else {
                         Helper.showMessage("error");
                     }
+                }
+            }
+        });
+    }
+
+    private void patikaController() {
+        createModelPatika();
+        patikaAdd();
+    }
+
+    private void createModelPatika() {
+        createTablePatika();
+        getAllPatika();
+        patikaPopupMenu();
+    }
+
+    private void createTablePatika() {
+        mdl_patika_list = new DefaultTableModel();
+        Object[] col_patika_list = {"ID", "Patika Adı"};
+        mdl_patika_list.setColumnIdentifiers(col_patika_list);
+        row_patika_list = new Object[col_patika_list.length];
+
+        tbl_patika_list.setModel(mdl_patika_list);
+        tbl_patika_list.getTableHeader().setReorderingAllowed(false);
+        tbl_patika_list.getColumnModel().getColumn(0).setMaxWidth(50);
+
+    }
+
+    private void patikaPopupMenu() {
+        patikaMenu = new JPopupMenu();
+        JMenuItem updateMenu = new JMenuItem("Güncelle");
+        JMenuItem deleteMenu = new JMenuItem("Sil");
+        patikaMenu.add(updateMenu);
+        patikaMenu.add(deleteMenu);
+        tbl_patika_list.setComponentPopupMenu(patikaMenu);
+
+        patikaUpdate(updateMenu);
+        patikaDelete(deleteMenu);
+    }
+
+    private void getAllPatika() {
+        DefaultTableModel clearModel = (DefaultTableModel) tbl_patika_list.getModel();
+        clearModel.setRowCount(0);
+
+        int i;
+        for (Patika patika : Patika.getList()) {
+            i = 0;
+            row_patika_list[i++] = patika.getId();
+            row_patika_list[i++] = patika.getName();
+            mdl_patika_list.addRow(row_patika_list);
+        }
+
+    }
+
+    private void patikaAdd() {
+        btn_patika_add.addActionListener(e -> {
+            if (Helper.isFieldEmpty(fld_patika_name)) {
+                Helper.showMessage("fill");
+            } else {
+                if (Patika.add(fld_patika_name.getText())) {
+                    getAllPatika();
+                    fld_patika_name.setText(null);
+                    Helper.showMessage("done");
+                } else {
+                    Helper.showMessage("error");
+                }
+            }
+        });
+    }
+
+    private void patikaUpdate(JMenuItem updateMenu) {
+        tbl_patika_list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                Point point = e.getPoint();
+                int selected_row = tbl_patika_list.rowAtPoint(point);
+                tbl_patika_list.setRowSelectionInterval(selected_row, selected_row);
+            }
+        });
+
+        updateMenu.addActionListener(e -> {
+            int select_id = Integer.parseInt(tbl_patika_list.getValueAt(tbl_patika_list.getSelectedRow(), 0)
+                    .toString());
+            UpdatePatikaGUI updatePatikaGUI = new UpdatePatikaGUI(Patika.getFetchById(select_id));
+            updatePatikaGUI.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    getAllPatika();
+                }
+            });
+        });
+    }
+
+    private void patikaDelete(JMenuItem deleteMenu) {
+        deleteMenu.addActionListener(e -> {
+            if (Helper.confirm("sure")) {
+                int select_id = Integer.parseInt(tbl_patika_list.getValueAt(tbl_patika_list.getSelectedRow(), 0)
+                        .toString());
+                if (Patika.delete(select_id)) {
+                    getAllPatika();
+                    Helper.showMessage("done");
+                } else {
+                    Helper.showMessage("error");
                 }
             }
         });
