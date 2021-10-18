@@ -134,6 +134,31 @@ public class User {
         return true;
     }
 
+    public static boolean update(int id, String name, String username, String pass, String type) {
+        String query = "UPDATE public.user SET name = ?, username = ?, pass = ?, type = ? WHERE id = ?";
+
+        User findUser = User.getFecthByUserName(username);
+        if (findUser != null && findUser.getId() != id) {
+            Helper.showMessage("Kullanıcı adı mevcut!");
+            return false;
+        }
+
+        try {
+            PreparedStatement pr = DBConnector.getInstance().prepareStatement(query);
+            pr.setString(1, name);
+            pr.setString(2, username);
+            pr.setString(3, pass);
+            pr.setString(4, type);
+            pr.setInt(5, id);
+            return pr.executeUpdate() != -1;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
     public static User getFecthByUserName(String userName) {
         User user = null;
         String query = "SELECT * FROM public.user WHERE username = ?";
@@ -155,6 +180,44 @@ public class User {
 
         return user;
 
+    }
+
+    public static ArrayList<User> searchUserList(String query) {
+        ArrayList<User> userList = new ArrayList<>();
+        User obj;
+        try {
+            Statement st = DBConnector.getInstance().createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                obj = new User();
+                obj.setId(rs.getInt("id"));
+                obj.setName(rs.getString("name"));
+                obj.setUsername(rs.getString("username"));
+                obj.setPass(rs.getString("pass"));
+                obj.setType(rs.getString("type"));
+
+                userList.add(obj);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return userList;
+    }
+
+    public static String searchQuery(String name, String username, String type) {
+        String query = "SELECT * FROM public.user WHERE username LIKE '%{{username}}%' " +
+                "AND name LIKE '%{{name}}%' ";
+        query = query.replace("{{username}}", username);
+        query = query.replace("{{name}}", name);
+        if (!type.isEmpty()) {
+            query += "AND type LIKE '{{type}}'";
+            query = query.replace("{{type}}", type);
+        }
+
+        return query;
     }
 
 }
