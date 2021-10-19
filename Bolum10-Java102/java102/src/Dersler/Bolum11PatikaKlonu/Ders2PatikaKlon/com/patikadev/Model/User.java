@@ -92,6 +92,32 @@ public class User {
         return userList;
     }
 
+    public static ArrayList<User> getListOnlyEducator() {
+        ArrayList<User> userList = new ArrayList<>();
+        String query = "SELECT * FROM public.user WHERE type = 'educator'";
+        User obj;
+        try {
+            Statement st = DBConnector.getInstance().createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                obj = new User();
+                obj.setId(rs.getInt("id"));
+                obj.setName(rs.getString("name"));
+                obj.setUsername(rs.getString("username"));
+                obj.setPass(rs.getString("pass"));
+                obj.setType(rs.getString("type"));
+
+                userList.add(obj);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return userList;
+    }
+
     public static boolean add(String name, String username, String pass, String type) {
         String query = "INSERT INTO public.user (name, username, pass, type) VALUES (?, ?, ?, ?)";
         User findUser = User.getFecthByUserName(username);
@@ -123,6 +149,10 @@ public class User {
 
     public static boolean delete(int id) {
         String query = "DELETE FROM public.user WHERE id = ?";
+        ArrayList<Course> courseList = Course.getListByUserId(id);
+        for (Course course : courseList) {
+            Course.delete(course.getId());
+        }
         try {
             PreparedStatement pr = DBConnector.getInstance().prepareStatement(query);
             pr.setInt(1, id);
@@ -180,6 +210,28 @@ public class User {
 
         return user;
 
+    }
+
+    public static User getFecthById(int id) {
+        User user = null;
+        String query = "SELECT * FROM public.user WHERE id = ?";
+        try {
+            PreparedStatement pr = DBConnector.getInstance().prepareStatement(query);
+            pr.setInt(1, id);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()) {
+                user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setUsername(rs.getString("username"));
+                user.setPass(rs.getString("pass"));
+                user.setType(rs.getString("type"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return user;
     }
 
     public static ArrayList<User> searchUserList(String query) {

@@ -92,7 +92,7 @@ public class Helper {
             msg = str;
         }
 
-        return JOptionPane.showConfirmDialog(null, msg, "Son kararın mı?",
+        return JOptionPane.showConfirmDialog(null, msg, "Uyarı!",
                 JOptionPane.YES_NO_OPTION) == 0;
     }
 }
