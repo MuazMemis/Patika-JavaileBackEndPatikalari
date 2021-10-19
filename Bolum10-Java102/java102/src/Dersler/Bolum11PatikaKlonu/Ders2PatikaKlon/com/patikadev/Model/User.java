@@ -212,6 +212,43 @@ public class User {
 
     }
 
+    public static User getFecth(String userName, String password) {
+        User user = null;
+        String query = "SELECT * FROM public.user WHERE username = ? AND pass = ?";
+        try {
+            PreparedStatement pr = DBConnector.getInstance().prepareStatement(query);
+            pr.setString(1, userName);
+            pr.setString(2, password);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()) {
+                switch (rs.getString("type")) {
+                    case "operator":
+                        user = new Operator();
+                        break;
+                    case "student":
+                        user = new Student();
+                        break;
+                    case "educator":
+                        user = new Educator();
+                        break;
+                    default:
+                        user = new User();
+                }
+
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setUsername(rs.getString("username"));
+                user.setPass(rs.getString("pass"));
+                user.setType(rs.getString("type"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return user;
+
+    }
+
     public static User getFecthById(int id) {
         User user = null;
         String query = "SELECT * FROM public.user WHERE id = ?";

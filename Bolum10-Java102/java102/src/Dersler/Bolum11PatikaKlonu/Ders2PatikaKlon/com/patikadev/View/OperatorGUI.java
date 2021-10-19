@@ -434,6 +434,7 @@ public class OperatorGUI extends JFrame {
     private void logout() {
         btn_logout.addActionListener(e -> {
             dispose();
+            LoginGUI loginGUI = new LoginGUI();
         });
     }
 
