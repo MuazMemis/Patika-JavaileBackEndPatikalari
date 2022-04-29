@@ -167,11 +167,11 @@ public class User {
     public static boolean update(int id, String name, String username, String pass, String type) {
         String query = "UPDATE public.user SET name = ?, username = ?, pass = ?, type = ? WHERE id = ?";
 
-        User findUser = User.getFecthByUserName(username);
+        /*User findUser = User.getFecthByUserName(username);
         if (findUser != null && findUser.getId() != id) {
             Helper.showMessage("Kullanıcı adı mevcut!");
             return false;
-        }
+        }*/
 
         try {
             PreparedStatement pr = DBConnector.getInstance().prepareStatement(query);

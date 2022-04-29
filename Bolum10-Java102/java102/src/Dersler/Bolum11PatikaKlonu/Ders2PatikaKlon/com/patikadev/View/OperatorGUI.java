@@ -10,6 +10,7 @@ import Dersler.Bolum11PatikaKlonu.Ders2PatikaKlon.com.patikadev.Model.User;
 
 import javax.swing.*;
 import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
@@ -51,6 +52,7 @@ public class OperatorGUI extends JFrame {
     private JComboBox cmb_course_patika;
     private JComboBox cmb_course_user;
     private JButton btn_course_add;
+    private JButton btn_user_update;
 
     private DefaultTableModel mdl_user_list;
     private Object[] row_user_list;
@@ -69,6 +71,7 @@ public class OperatorGUI extends JFrame {
         createLayout();
 
         userController();
+
         patikaController();
         courseController();
 
@@ -274,6 +277,7 @@ public class OperatorGUI extends JFrame {
 
     private void userUpdate() {
         tbl_user_list.getModel().addTableModelListener(e -> {
+            System.out.println("update");
             if (e.getType() == TableModelEvent.UPDATE) {
                 int user_id = Integer.parseInt(tbl_user_list.getValueAt(tbl_user_list.getSelectedRow(), 0)
                         .toString());
@@ -283,12 +287,14 @@ public class OperatorGUI extends JFrame {
                 String user_type = tbl_user_list.getValueAt(tbl_user_list.getSelectedRow(), 4).toString();
 
                 if (User.update(user_id, user_name, user_username, user_pass, user_type)) {
+                    getAllUser();
+                    loadEducatorCombo();
+                    getAllCourse();
                     Helper.showMessage("done");
+                } else {
+                    Helper.showMessage("error");
                 }
 
-                getAllUser();
-                loadEducatorCombo();
-                getAllCourse();
             }
         });
     }
@@ -308,7 +314,7 @@ public class OperatorGUI extends JFrame {
             } else {
                 if (Helper.confirm("sure")) {
                     int user_id = Integer.parseInt(fld_user_id.getText());
-                    if (User.delete(user_id)) {
+                    if (User.delete(Integer.parseInt(fld_user_id.getText()))) {
                         getAllUser();
                         loadEducatorCombo();
                         getAllCourse();
