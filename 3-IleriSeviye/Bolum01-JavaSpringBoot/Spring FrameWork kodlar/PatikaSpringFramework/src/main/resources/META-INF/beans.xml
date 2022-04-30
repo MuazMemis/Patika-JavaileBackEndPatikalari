@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/beans_2_0.xsd"
+       bean-discovery-mode="all">
+
+    <!--alternative-->
+    <alternatives>
+        <class>com.hamitmizrak.alternative.Patron1</class>
+       <!-- <class>com.hamitmizrak.alternative.Patron2</class>-->
+    </alternatives>
+
+    <!--interceptor-->
+    <interceptors>
+        <class>com.hamitmizrak.aop.interceptor.InterceptorYolKesiciAsilIs</class>
+    </interceptors>
+
+    <!--decorator-->
+    <decorators>
+        <class>com.hamitmizrak.aop.decorator.EvDecorator</class>
+    </decorators>
+
+</beans>
