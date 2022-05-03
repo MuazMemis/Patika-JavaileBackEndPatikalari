@@ -1,13 +1,13 @@
-package com.muazmemis.alternative;
+package com.muazmemis.qualifier;
 
-import javax.enterprise.inject.Alternative;
+import javax.enterprise.inject.Default;
 
-@Alternative
+@Default
 public class Patron1 implements PatronInterface {
 
     // @Alternative : Aynı anda sadece bir tane proje çalışıyor. diğerleri kapatılıyor.
     @Override
     public String surum(String data) {
-        return "Patron 1: " + data;
+        return "Default data: " + data;
     }
 }
