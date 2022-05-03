@@ -9,7 +9,7 @@ public class Calisan {
 
     private Patron patron;
 
-    public Calisan(Patron patron) {
+    public Calisan() {
         this.patron = new Patron();
     }
 
