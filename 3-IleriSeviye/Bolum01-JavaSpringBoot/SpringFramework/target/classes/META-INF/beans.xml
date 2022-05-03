@@ -7,6 +7,10 @@
 
     <alternatives>
         <class>com.muazmemis.alternative.Patron1</class>
-<!--        <class>com.muazmemis.alternative.Patron2</class>-->
+        <!--        <class>com.muazmemis.alternative.Patron2</class>-->
     </alternatives>
+
+    <interceptors>
+        <class>com.muazmemis.aop.interceptor.InterceptorYolKesiciAsilIs</class>
+    </interceptors>
 </beans>
