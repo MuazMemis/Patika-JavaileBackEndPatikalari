@@ -1,4 +1,4 @@
-package com.muazmemis.qualifier;
+package com.muazmemis.qualifier2;
 
 @QualifierMultiple
 public class Patron2 implements PatronInterface {

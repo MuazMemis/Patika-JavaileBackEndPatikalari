@@ -1,4 +1,4 @@
-package com.muazmemis.qualifier;
+package com.muazmemis.qualifier3;
 
 import javax.enterprise.inject.Default;
 

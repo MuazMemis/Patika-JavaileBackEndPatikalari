@@ -1,4 +1,4 @@
-package com.muazmemis.qualifier;
+package com.muazmemis.qualifier2;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
