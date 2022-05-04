@@ -9,8 +9,8 @@ import java.util.logging.Logger;
 @Controller
 public class PostConstructTutorials {
 
-    @Autowired
-    Logger LOG;
+//    @Autowired
+//    Logger LOG;
 
     // Parametresiz constructor
     // Cannot invoke "java.util.logging.Logger.info(String)" because "this.LOG" is null
@@ -20,14 +20,14 @@ public class PostConstructTutorials {
 
     // Bean henüz başlamadığından null pointer hatası alınıyor. Bu yüzden bağımlılığı enjekte edemiyoruz.
     // Görevi: Bir bean nesnesi oluşturuldğunda hemen oluşur.
-    @PostConstruct
-    public void init() {
-        LOG.info("Log info çağırıldı");
-    }
+//    @PostConstruct
+//    public void init() {
+//        LOG.info("Log info çağırıldı");
+//    }
 
-    public static void main(String[] args) {
-        PostConstructTutorials postConstructTutorials = new PostConstructTutorials();
-        System.out.println(postConstructTutorials);
-    }
+//    public static void main(String[] args) {
+//        PostConstructTutorials postConstructTutorials = new PostConstructTutorials();
+//        System.out.println(postConstructTutorials);
+//    }
 
 }

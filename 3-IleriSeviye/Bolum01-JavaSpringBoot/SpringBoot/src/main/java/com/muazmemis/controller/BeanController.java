@@ -15,7 +15,7 @@ public class BeanController {
     @Autowired
     BeanConfig beanConfig;
 
-    // http://localhost:8080
+    // http://localhost:8080/bean/beanDto
     @GetMapping("/bean/beanDto")
     @ResponseBody
     public String getBeanDto() {
