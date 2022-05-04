@@ -3,6 +3,7 @@
 
 # Log file
 *.log
+memory_persist/
 
 # BlueJ files
 *.ctxt
