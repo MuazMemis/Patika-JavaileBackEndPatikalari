@@ -97,3 +97,9 @@ $    studentdb=#  \dt ==> Tabloları göstermek
 $    studentdb=#  select * from product
 $    studentdb=#  \q ==> ÇIKIŞ
 ```
+
+```
+#{} ==> messages.properties
+@{} ==> css,js
+${} ==> Model
+```
