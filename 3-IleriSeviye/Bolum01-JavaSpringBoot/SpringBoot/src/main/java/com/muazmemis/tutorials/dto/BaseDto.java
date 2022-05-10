@@ -1,4 +1,4 @@
-package com.muazmemis.dto;
+package com.muazmemis.tutorials.dto;
 
 import java.util.Date;
 

@@ -1,6 +1,6 @@
-package com.muazmemis.controller;
+package com.muazmemis.tutorials.controller;
 
-import com.muazmemis.dto.TeacherDto;
+import com.muazmemis.tutorials.dto.TeacherDto;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

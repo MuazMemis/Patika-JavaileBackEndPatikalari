@@ -1,4 +1,4 @@
-package com.muazmemis.bean;
+package com.muazmemis.tutorials.bean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

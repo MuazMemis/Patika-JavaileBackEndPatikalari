@@ -1,4 +1,4 @@
-package com.muazmemis.dto;
+package com.muazmemis.tutorials.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

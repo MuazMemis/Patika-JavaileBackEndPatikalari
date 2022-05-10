@@ -1,6 +1,6 @@
-package com.muazmemis.controller;
+package com.muazmemis.tutorials.controller;
 
-import com.muazmemis.dto.ProductDto;
+import com.muazmemis.tutorials.dto.ProductDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
