@@ -45,13 +45,17 @@ public class EmployeeServicesImpl implements EmployeeServices {
         return employeeDto;
     }
 
+    //FIND
+    // http://localhost:8080/api/v1/employees/1
     @GetMapping("/employees/{id}")
     @Override
-    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long id) throws Throwable {
-        EmployeeEntity employeeEntity = (EmployeeEntity) employeeRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Employee not exist with id: " + id));
-        EmployeeDto employeeDto = entityToDto(employeeEntity);
+    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable(name = "id") Long id) {
 
+        EmployeeEntity employee = employeeRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Employee " + id + " numaralı product id bulunamadı !!!!")
+        );
+
+        EmployeeDto employeeDto = entityToDto(employee);//model
         return ResponseEntity.ok(employeeDto);
     }
 
