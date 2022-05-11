@@ -1,5 +1,7 @@
 package com.muazmemis.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,6 +18,7 @@ import java.util.Date;
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties(value = { "created_date", "update_date" }, allowGetters = true)
 public class BaseEntity {
 
     @Id
