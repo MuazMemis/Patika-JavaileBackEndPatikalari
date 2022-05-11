@@ -3,7 +3,7 @@ package com.muazmemis.business.services.impl;
 import com.muazmemis.business.dto.EmployeeDto;
 import com.muazmemis.business.services.EmployeeServices;
 import com.muazmemis.data.entity.EmployeeEntity;
-import com.muazmemis.data.repository.EmployoeeRepository;
+import com.muazmemis.data.repository.EmployeeRepository;
 import com.muazmemis.exception.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.Map;
 public class EmployeeServicesImpl implements EmployeeServices {
 
     @Autowired
-    private EmployoeeRepository employeeRepository;
+    private EmployeeRepository employeeRepository;
 
     @Autowired
     private ModelMapper modelMapper;
