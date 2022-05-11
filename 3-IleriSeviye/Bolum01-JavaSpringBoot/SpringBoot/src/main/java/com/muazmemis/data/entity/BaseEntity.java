@@ -1,9 +1,7 @@
 package com.muazmemis.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -15,14 +13,13 @@ import javax.persistence.*;
 import java.util.Date;
 
 @MappedSuperclass
-@Getter
-@Setter
+@Data
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = { "created_date", "update_date" }, allowGetters = true)
+@JsonIgnoreProperties(value = {"created_date", "update_date"}, allowGetters = true)
 public class BaseEntity {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -32,9 +29,11 @@ public class BaseEntity {
 
     @Column(name = "created_date")
     @CreatedDate
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
-    @Column(name = "update_by")
+    @Column(name = "update_by", nullable = false)
     @LastModifiedBy
     private String updateBy;
 
@@ -42,7 +41,7 @@ public class BaseEntity {
     @LastModifiedDate
     private Date updateDate;
 
-    @Column(name = "system_auto_date")
+    @Column(name = "update_date",nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date date;
