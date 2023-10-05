@@ -1,0 +1,25 @@
+version: "3.4"
+
+services:
+  twitter-app:
+    build: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb
+      - redis
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - data:/data/db
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
+volumes:
+  data:
